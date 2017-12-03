@@ -10,9 +10,13 @@ snprintf(buf, 4096, "some text here\n");
 
 # log file
 Now the file would look like
+
 hexdump -C test_file | head -n 2
+
 00000000  73 6f 6d 65 20 74 65 78  74 20 68 65 72 65 0a 00  |some text here..|
+
 00000010  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
+
 
 Following with normal bash-utilities is difficult, as the usual parameters which change for ordinary files do not change here.
 inotify-wait also doesn't work for this type of file.
