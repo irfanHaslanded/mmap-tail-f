@@ -1,5 +1,11 @@
 # mmap-tail-f
-tail follow memory mapped files which tail cannot follow
+Many times, when debugging/monitoring, it is useful to follow additions at the end of a while.
+For instance, a log file to which lines are added everytime something happens.
+the linux tail utility allows you to see the last n lines of a file.
+with tail -f, you can make tail "follow" the output and not exit when it reaches the end of while.
+Instead, it waits and checks if newer output has appeared, periodically, and prints as it appears.
+
+This utility allows you to follow memory mapped files, which the standard tail utility cannot follow.
 Certain high performance logging applications use a memory mapped file which is pre-filled with NULL.
 log messages are written with in this char *buf, at subsequent indices.
 
@@ -7,6 +13,8 @@ an example file would look like:
 # code
 char buf[4096];
 snprintf(buf, 4096, "some text here\n");
+/* after some time */
+snprintf(buf+pos, 4096-pos, "new text at a later time\n"
 
 # log file
 Now the file would look like
@@ -39,3 +47,7 @@ Also, to handle a lot of files, it might be even more cumbersome.
 mtail-f provides a tail like utility with similar functions/options to follow such files
 
 # usage:
+mtail-f <filename>
+mtail-f <filename1> <filename2> ...
+
+Use ctrl-c to exit
