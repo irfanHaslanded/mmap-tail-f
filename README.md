@@ -51,3 +51,6 @@ mtail-f <filename>
 mtail-f <filename1> <filename2> ...
 
 Use ctrl-c to exit
+
+# Building
+simply use gcc to build the stand-alone mtail-f.c file and copy the binary to a location in your PATH
