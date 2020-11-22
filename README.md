@@ -11,11 +11,12 @@ log messages are written with in this char *buf, at subsequent indices.
 
 an example file would look like:
 # code
+```c
 char buf[4096];
 snprintf(buf, 4096, "some text here\n");
 /* after some time */
 snprintf(buf+pos, 4096-pos, "new text at a later time\n"
-
+```
 # log file
 Now the file would look like
 
@@ -33,6 +34,7 @@ a simple idea would be to write a bash script which can repeatedly poll the numb
 If that changes, use awk/sed to print the newer lines.
 
 # bash pseudocode:
+```bash
 while true; do
     old = $(wc -l $filename)
     sleep $poll_interval
@@ -40,6 +42,7 @@ while true; do
     sed -n "${$old},${new}p;${new}q" $(filename)
     old = $new
 done
+```
 
 However, this can be very inefficient for larger files. 
 Also, to handle a lot of files, it might be even more cumbersome.
